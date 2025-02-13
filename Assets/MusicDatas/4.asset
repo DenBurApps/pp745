@@ -1,0 +1,19 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f256d45bd05cd664ea95980aa2d3a143, type: 3}
+  m_Name: 4
+  m_EditorClassIdentifier: 
+  Icon: {fileID: 21300000, guid: 1399c3a12501c0247ad24aea7afb3a96, type: 3}
+  Name: Beats
+  Duration: 108.06857
+  Music: {fileID: 8300000, guid: 847cd75df3f5f9048adfbde5ffcfb9e3, type: 3}
+  Background: {fileID: 21300000, guid: 98e1e337db2048e43b9b91f1ecbc0679, type: 3}

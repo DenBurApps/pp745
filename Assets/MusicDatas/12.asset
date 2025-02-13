@@ -1,0 +1,19 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f256d45bd05cd664ea95980aa2d3a143, type: 3}
+  m_Name: 12
+  m_EditorClassIdentifier: 
+  Icon: {fileID: 21300000, guid: fce77e1b039dca74aab53d90092dbca6, type: 3}
+  Name: Valley
+  Duration: 133.776
+  Music: {fileID: 8300000, guid: c2667d8d99acca3429233bf72ff513a7, type: 3}
+  Background: {fileID: 21300000, guid: f7217d86e0ef53f48a8d31413d0d8fae, type: 3}

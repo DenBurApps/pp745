@@ -69,7 +69,6 @@ namespace MainScreen.HabbitPlane
             _iconImage.sprite = _iconSpriteProvider.GetSpriteByType(data.IconType);
             
             LoadSavedProgress();
-            CheckAndResetProgress();
             UpdateProgressDisplay();
         }
 
@@ -89,34 +88,23 @@ namespace MainScreen.HabbitPlane
         {
             if (HabbitData == null || _dataSaver == null) return;
 
-            var (lastResetDate, progressHistory) = _dataSaver.LoadHabbitProgress(HabbitData.Name);
+            var (lastResetDate, progressHistory) = _dataSaver.LoadHabbitProgress(HabbitData.Id); // используем Id
+            if (lastResetDate == DateTime.MinValue) // если данных нет
+            {
+                _lastResetDate = DateTime.Now.Date;
+                _progressHistory = new List<HabbitDataSaver.DailyProgress>();
+                return;
+            }
+    
             _lastResetDate = lastResetDate;
             _progressHistory = progressHistory ?? new List<HabbitDataSaver.DailyProgress>();
-    
-            if (progressHistory == null)
-            {
-                _progressHistory = new List<HabbitDataSaver.DailyProgress>();
-            }
-            else
-            {
-                _progressHistory = progressHistory;
-            }
-
-            if (_progressHistory.Count > 0)
-            {
-                var lastProgress = _progressHistory[_progressHistory.Count - 1];
-                if (lastProgress.Date.Date == DateTime.Now.Date)
-                {
-                    HabbitData.Progress = lastProgress.Progress;
-                }
-            }
         }
 
         public void Disable()
         {
-            if (IsActive && HabbitData != null)
+            if (HabbitData != null)
             {
-                SaveCurrentProgress();
+                _dataSaver.DeleteHabbit(HabbitData);
             }
             
             HabbitData = null;
@@ -209,14 +197,6 @@ namespace MainScreen.HabbitPlane
         public List<HabbitDataSaver.DailyProgress> GetProgressHistory()
         {
             return new List<HabbitDataSaver.DailyProgress>(_progressHistory ?? new List<HabbitDataSaver.DailyProgress>());
-        }
-
-        private void OnApplicationPause(bool pauseStatus)
-        {
-            if (pauseStatus && IsActive)
-            {
-                SaveCurrentProgress();
-            }
         }
     }
 }

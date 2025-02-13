@@ -29,6 +29,8 @@ namespace HabbitData
         public IconType IconType;
         public string Note;
         public int Progress;
+        
+        public string Id { get; private set; }
 
         public HabbitData(string name, int number, FrequencyType frequencyType, IconType iconType, string note)
         {
@@ -38,6 +40,8 @@ namespace HabbitData
             IconType = iconType;
             Note = note;
             Progress = 0;
+            
+            Id = Guid.NewGuid().ToString();
         }
     }
 }

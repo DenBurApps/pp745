@@ -43,6 +43,7 @@ namespace MainScreen
             _addHabbitButton.onClick.AddListener(AddHabbitClicked);
             _openHabbitScreen.BackClicked += _screenVisabilityHandler.EnableScreen;
             _addHabbitScreen.OnHabbitCreated += EnableHabbitPlane;
+            _addHabbitScreen.BackClicked += EnableScreen;
             _editHabbitScreen.OnHabbitUpdated += _screenVisabilityHandler.EnableScreen;
             _editHabbitScreen.OnHabbitDeleted += DeleteHabbit;
 
@@ -68,6 +69,7 @@ namespace MainScreen
             _openHabbitScreen.BackClicked -= _screenVisabilityHandler.EnableScreen;
             
             _addHabbitScreen.OnHabbitCreated -= EnableHabbitPlane;
+            _addHabbitScreen.BackClicked -= EnableScreen;
 
             _addHabbitButton.onClick.RemoveListener(AddHabbitClicked);
             
@@ -157,9 +159,8 @@ namespace MainScreen
 
             if (plane != null && plane.IsActive)
             {
-                _dataSaver.DeleteHabbit(plane.HabbitData.Name);
+                _dataSaver.DeleteHabbit(plane.HabbitData);
                 plane.Disable();
-                SaveAllHabbits();
                 ToggleEmptyData();
             }
         }

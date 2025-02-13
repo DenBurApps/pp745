@@ -1,0 +1,19 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f256d45bd05cd664ea95980aa2d3a143, type: 3}
+  m_Name: 9
+  m_EditorClassIdentifier: 
+  Icon: {fileID: 21300000, guid: 2e2cc8df7f61d3c44b6acdebb723adfa, type: 3}
+  Name: Staring at the night sky
+  Duration: 142.02776
+  Music: {fileID: 8300000, guid: a1abf01327e96cd43a42afb93ea5a16c, type: 3}
+  Background: {fileID: 21300000, guid: 3d8171ddfd894104381270bad252ad4d, type: 3}

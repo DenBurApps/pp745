@@ -31,6 +31,7 @@ namespace AddHabbit
         public event Action<HabbitData.HabbitData> OnHabbitCreated;
         public event Action<HabbitPlane> OnHabbitDeleted;
         public event Action OnHabbitUpdated;
+        public event Action BackClicked;
 
         private void Awake()
         {
@@ -213,6 +214,7 @@ namespace AddHabbit
             
             ResetScreen();
             _screenVisabilityHandler.DisableScreen();
+            BackClicked?.Invoke();
         }
         
         private void ValidateInput()

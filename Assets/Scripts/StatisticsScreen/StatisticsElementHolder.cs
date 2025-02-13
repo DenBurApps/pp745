@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using MainScreen.EmojiSelector;
 using UnityEngine;
@@ -6,8 +7,8 @@ namespace StatisticsScreen
 {
     public class StatisticsElementHolder : MonoBehaviour
     {
-        [SerializeField] private StatisticsElement[] _elements; // 5 элементов, по одному для каждого EmojiType
-        [SerializeField] private int _dayIndex; // Индекс дня недели (0 = воскресенье, 6 = суббота)
+        [SerializeField] private StatisticsElement[] _elements;
+        [SerializeField] private int _dayIndex;
 
         private Dictionary<EmojiType, StatisticsElement> _typeToElement;
         private StatisticsElement _activeElement;
@@ -16,18 +17,15 @@ namespace StatisticsScreen
 
         private void Awake()
         {
-            ValidateElements();
             InitializeElementsDictionary();
             DisableAllElements();
         }
-
-        private void ValidateElements()
+        
+        public StatisticsElement GetActiveElement()
         {
-            if (_elements.Length != 5) // Проверяем, что элементов ровно 5 (по количеству типов эмодзи)
-            {
-                Debug.LogError(
-                    $"StatisticsElementHolder для дня {_dayIndex} должен содержать ровно 5 элементов (по одному для каждого типа эмодзи)");
-            }
+            var activeElement = Array.Find(_elements, element => element.gameObject.activeSelf);
+    
+            return activeElement;
         }
 
         private void InitializeElementsDictionary()
@@ -41,13 +39,11 @@ namespace StatisticsScreen
 
         public void EnableTypeElement(EmojiType type)
         {
-            // Сначала отключаем текущий активный элемент
             if (_activeElement != null)
             {
                 _activeElement.gameObject.SetActive(false);
             }
 
-            // Активируем новый элемент, если он существует для данного типа
             if (_typeToElement.TryGetValue(type, out var element))
             {
                 element.gameObject.SetActive(true);
@@ -63,16 +59,6 @@ namespace StatisticsScreen
             }
 
             _activeElement = null;
-        }
-
-        public Vector3? GetConnectorPositionForType(EmojiType type)
-        {
-            if (_typeToElement.TryGetValue(type, out var element) && element.gameObject.activeSelf)
-            {
-                return element.ConnectorPosition;
-            }
-
-            return null;
         }
     }
 }

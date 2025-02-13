@@ -27,6 +27,7 @@ namespace MainScreen.Calendar
         private void OnEnable()
         {
             _dailyEmojiSelector.EmojiSelected += AssignType;
+            EmojiUpdateManager.OnEmojiUpdated += OnEmojiUpdatedFromStatistics;
 
             foreach (var calendarElement in _elements)
             {
@@ -37,10 +38,23 @@ namespace MainScreen.Calendar
         private void OnDisable()
         {
             _dailyEmojiSelector.EmojiSelected -= AssignType;
+            EmojiUpdateManager.OnEmojiUpdated -= OnEmojiUpdatedFromStatistics;
 
             foreach (var calendarElement in _elements)
             {
                 calendarElement.ElementClicked -= OnElementClicked;
+            }
+        }
+        
+        private void OnEmojiUpdatedFromStatistics(DateTime date, EmojiType type)
+        {
+            for (int i = 0; i < _dates.Length; i++)
+            {
+                if (_dates[i].Date == date.Date)
+                {
+                    _elements[i].AssignEmojiType(type);
+                    break;
+                }
             }
         }
 
@@ -118,6 +132,12 @@ namespace MainScreen.Calendar
             {
                 _currentSelectedElement.AssignEmojiType(type);
                 SaveEmojiType(_currentSelectedElement, type);
+                
+                int elementIndex = Array.IndexOf(_elements, _currentSelectedElement);
+                if (elementIndex != -1)
+                {
+                    EmojiUpdateManager.NotifyEmojiUpdated(_dates[elementIndex], type);
+                }
             }
         }
 

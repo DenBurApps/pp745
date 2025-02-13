@@ -9,6 +9,6 @@ namespace StatisticsScreen
         [SerializeField] private Transform _connectorPoint;
 
         public EmojiType Type => _emojiType;
-        public Vector3 ConnectorPosition => _connectorPoint.position;
+        public Transform ConnectorPosition => _connectorPoint;
     }
 }

@@ -36,6 +36,11 @@ public class Settings : MonoBehaviour
         _settingsCanvas.SetActive(true);
     }
 
+    public void CloseSettings()
+    {
+        _settingsCanvas.SetActive(false);
+    }
+
     public void RateUs()
     {
 #if UNITY_IOS
